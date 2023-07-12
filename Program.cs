@@ -2292,10 +2292,10 @@ public class Program
         {
             Console.WriteLine("Histories Menu:");
             Console.WriteLine("1. Get All Histories");
-            Console.WriteLine("2. Insert History");
-            Console.WriteLine("3. Update History");
-            Console.WriteLine("4. Delete History");
-            Console.WriteLine("5. Get History by Employee ID");
+            Console.WriteLine("2. Insert Histories");
+            Console.WriteLine("3. Update Histories");
+            Console.WriteLine("4. Delete Histories");
+            Console.WriteLine("5. Get Histories by Employee ID");
             Console.WriteLine("0. Back");
             Console.Write("Choose an option: ");
             string option = Console.ReadLine();
@@ -2306,11 +2306,11 @@ public class Program
                     GetHistories();
                     break;
                 case "2":
-                    Console.Write("Enter start date (yyyy-MM-dd): ");
+                    Console.Write("Enter start date (yyyy-mm-dd): ");
                     DateTime startDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter employee ID: ");
                     int employeeId = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter end date (yyyy-MM-dd): ");
+                    Console.Write("Enter end date (yyyy-mm-dd): ");
                     DateTime endDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter department ID: ");
                     int departmentId = Convert.ToInt32(Console.ReadLine());
@@ -2321,9 +2321,9 @@ public class Program
                 case "3":
                     Console.Write("Enter employee ID: ");
                     int updateEmployeeId = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter new start date (yyyy-MM-dd): ");
+                    Console.Write("Enter new start date (yyyy-mm-dd): ");
                     DateTime newStartDate = Convert.ToDateTime(Console.ReadLine());
-                    Console.Write("Enter new end date (yyyy-MM-dd): ");
+                    Console.Write("Enter new end date (yyyy-mm-dd): ");
                     DateTime newEndDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter new department ID: ");
                     int newDepartmentId = Convert.ToInt32(Console.ReadLine());
