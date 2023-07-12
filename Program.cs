@@ -800,7 +800,7 @@ public class Program
             pCountryId.Value = country_id;
             sqlCommand.Parameters.Add(pCountryId);
 
-            int result = sqlCommand.ExecuteNonQuery(); //ini int karena variabel result mengembalikan angka
+            int result = sqlCommand.ExecuteNonQuery(); 
             if (result > 0)
             {
                 Console.WriteLine("Insert success.");
