@@ -1203,7 +1203,7 @@ public class Program
                     Console.WriteLine("Id: " + reader.GetInt32(0));
                     Console.WriteLine("Name: " + reader.GetString(1));
                     Console.WriteLine("LocationId: " + reader.GetInt32(2));
-                    //Console.WriteLine("ManagerId: " + reader.GetInt32(3));
+                    Console.WriteLine("ManagerId: " + reader.GetInt32(3));
                 }
             }
             else
@@ -1247,7 +1247,7 @@ public class Program
                     Console.WriteLine("HireDate: " + reader.GetDateTime(5));
                     Console.WriteLine("Salary: " + reader.GetInt32(6));
                     Console.WriteLine("Comission_pct: " + reader.GetDecimal(7));
-                    //Console.WriteLine("Manager_id: " + reader.GetInt32(8));
+                    Console.WriteLine("Manager_id: " + reader.GetInt32(8));
                     Console.WriteLine("Job_id: " + reader.GetString(9));
                     Console.WriteLine("Department_id: " + reader.GetInt32(10));
                 }
@@ -1546,7 +1546,7 @@ public class Program
                     Console.WriteLine("Hire date: " + reader.GetDateTime(5));
                     Console.WriteLine("Salary: " + reader.GetInt32(6));
                     Console.WriteLine("Comission pct: " + reader.GetDecimal(7));
-                    //Console.WriteLine("Manager id: " + reader.GetInt32(8));
+                    Console.WriteLine("Manager id: " + reader.GetInt32(8));
                     Console.WriteLine("Job id: " + reader.GetString(9));
                     Console.WriteLine("Department id: " + reader.GetInt32(10));
                 }
