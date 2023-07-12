@@ -2224,7 +2224,7 @@ public class Program
                     string email = Console.ReadLine();
                     Console.Write("Enter phone number: ");
                     string phoneNumber = Console.ReadLine();
-                    Console.Write("Enter hire date (yyyy-MM-dd): ");
+                    Console.Write("Enter hire date (yyyy-mm-dd): ");
                     DateTime hireDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter salary: ");
                     int salary = Convert.ToInt32(Console.ReadLine());
@@ -2249,7 +2249,7 @@ public class Program
                     string newEmail = Console.ReadLine();
                     Console.Write("Enter new phone number: ");
                     string newPhoneNumber = Console.ReadLine();
-                    Console.Write("Enter new hire date (yyyy-MM-dd): ");
+                    Console.Write("Enter new hire date (yyyy-mm-dd): ");
                     DateTime newHireDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter new salary: ");
                     int newSalary = Convert.ToInt32(Console.ReadLine());
