@@ -1607,7 +1607,7 @@ public class Program
 
 
     //INSERT HISTORIES
-    public static void InsertEmployees(DateTime start_date, int employee_id, DateTime end_date, int department_id, string job_id)
+    public static void InsertHistories(DateTime start_date, int employee_id, DateTime end_date, int department_id, string job_id)
     {
         _connection = new SqlConnection(_connectionString);
 
@@ -1856,12 +1856,12 @@ public class Program
                 case "5":
                     DepartmensMenu();
                     break;
-                //case "6":
-                //    EmployeesMenu;
-                //    break;
-                //case "7";
-                //    HistoriesMenu;
-                //    break;
+                case "6":
+                    EmployeesMenu();
+                    break;
+                case "7":
+                    HistoriesMenu();
+                    break;
                 case "0":
                     exit = true;
                     break;
@@ -2190,5 +2190,166 @@ public class Program
             Console.WriteLine();
         }
 
+    }
+
+
+    public static void EmployeesMenu()
+    {
+        bool back = false;
+        while (!back)
+        {
+            Console.WriteLine("Employees Menu:");
+            Console.WriteLine("1. Get All Employees");
+            Console.WriteLine("2. Insert Employee");
+            Console.WriteLine("3. Update Employee");
+            Console.WriteLine("4. Delete Employee");
+            Console.WriteLine("5. Get Employee by ID");
+            Console.WriteLine("0. Back");
+            Console.Write("Choose an option: ");
+            string option = Console.ReadLine();
+
+            switch (option)
+            {
+                case "1":
+                    GetEmployees();
+                    break;
+                case "2":
+                    Console.Write("Enter employee ID: ");
+                    int employeeId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter first name: ");
+                    string firstName = Console.ReadLine();
+                    Console.Write("Enter last name: ");
+                    string lastName = Console.ReadLine();
+                    Console.Write("Enter email: ");
+                    string email = Console.ReadLine();
+                    Console.Write("Enter phone number: ");
+                    string phoneNumber = Console.ReadLine();
+                    Console.Write("Enter hire date (yyyy-MM-dd): ");
+                    DateTime hireDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter salary: ");
+                    int salary = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter commission percentage: ");
+                    decimal commissionPct = Convert.ToDecimal(Console.ReadLine());
+                    Console.Write("Enter manager ID: ");
+                    int managerId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter job ID: ");
+                    int jobId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter department ID: ");
+                    int departmentId = Convert.ToInt32(Console.ReadLine());
+                    InsertEmployees(employeeId, firstName, lastName, email, phoneNumber, hireDate, salary, commissionPct, managerId, jobId, departmentId);
+                    break;
+                case "3":
+                    Console.Write("Enter employee ID: ");
+                    int updateEmployeeId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new first name: ");
+                    string newFirstName = Console.ReadLine();
+                    Console.Write("Enter new last name: ");
+                    string newLastName = Console.ReadLine();
+                    Console.Write("Enter new email: ");
+                    string newEmail = Console.ReadLine();
+                    Console.Write("Enter new phone number: ");
+                    string newPhoneNumber = Console.ReadLine();
+                    Console.Write("Enter new hire date (yyyy-MM-dd): ");
+                    DateTime newHireDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter new salary: ");
+                    int newSalary = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new commission percentage: ");
+                    decimal newCommissionPct = Convert.ToDecimal(Console.ReadLine());
+                    Console.Write("Enter new manager ID: ");
+                    int newManagerId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new job ID: ");
+                    int newJobId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new department ID: ");
+                    int newDepartmentId = Convert.ToInt32(Console.ReadLine());
+                    UpdateEmployees(updateEmployeeId, newFirstName, newLastName, newEmail, newPhoneNumber, newHireDate, newSalary, newCommissionPct, newManagerId, newJobId, newDepartmentId);
+                    break;
+                case "4":
+                    Console.Write("Enter employee ID: ");
+                    int deleteEmployeeId = Convert.ToInt32(Console.ReadLine());
+                    DeleteEmployees(deleteEmployeeId);
+                    break;
+                case "5":
+                    Console.Write("Enter employee ID: ");
+                    int employeeById = Convert.ToInt32(Console.ReadLine());
+                    GetEmployeesById(employeeById);
+                    break;
+                case "0":
+                    back = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+
+            Console.WriteLine();
+        }
+    }
+
+    public static void HistoriesMenu()
+    {
+        bool back = false;
+        while (!back)
+        {
+            Console.WriteLine("Histories Menu:");
+            Console.WriteLine("1. Get All Histories");
+            Console.WriteLine("2. Insert History");
+            Console.WriteLine("3. Update History");
+            Console.WriteLine("4. Delete History");
+            Console.WriteLine("5. Get History by Employee ID");
+            Console.WriteLine("0. Back");
+            Console.Write("Choose an option: ");
+            string option = Console.ReadLine();
+
+            switch (option)
+            {
+                case "1":
+                    GetHistories();
+                    break;
+                case "2":
+                    Console.Write("Enter start date (yyyy-MM-dd): ");
+                    DateTime startDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter employee ID: ");
+                    int employeeId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter end date (yyyy-MM-dd): ");
+                    DateTime endDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter department ID: ");
+                    int departmentId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter job ID: ");
+                    string jobId = Console.ReadLine();
+                    InsertHistories(startDate, employeeId, endDate, departmentId, jobId);
+                    break;
+                case "3":
+                    Console.Write("Enter employee ID: ");
+                    int updateEmployeeId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new start date (yyyy-MM-dd): ");
+                    DateTime newStartDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter new end date (yyyy-MM-dd): ");
+                    DateTime newEndDate = Convert.ToDateTime(Console.ReadLine());
+                    Console.Write("Enter new department ID: ");
+                    int newDepartmentId = Convert.ToInt32(Console.ReadLine());
+                    Console.Write("Enter new job ID: ");
+                    string newJobId = Console.ReadLine();
+                    UpdateHistories(updateEmployeeId, newStartDate, newEndDate, newDepartmentId, newJobId);
+                    break;
+                case "4":
+                    Console.Write("Enter employee ID: ");
+                    int deleteEmployeeId = Convert.ToInt32(Console.ReadLine());
+                    DeleteHistories(deleteEmployeeId);
+                    break;
+                case "5":
+                    Console.Write("Enter employee ID: ");
+                    int employeeById = Convert.ToInt32(Console.ReadLine());
+                    GetHistoriesById(employeeById);
+                    break;
+                case "0":
+                    back = true;
+                    break;
+                default:
+                    Console.WriteLine("Invalid option. Please try again.");
+                    break;
+            }
+
+            Console.WriteLine();
+        }
     }
 }
