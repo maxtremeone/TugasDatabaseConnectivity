@@ -1,5 +1,4 @@
-﻿using MVCArchitecture;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 using System.Collections.Generic;
 
@@ -97,12 +96,12 @@ public class Job
             transaction.Commit();
             connection.Close();
 
-            return result; // 0 gagal, >= 1 berhasil
+            return result; 
         }
         catch
         {
             transaction.Rollback();
-            return -1; // Kesalahan terjadi pada database
+            return -1; 
         }
     }
 
@@ -228,11 +227,16 @@ public class Job
             reader.Close();
             connection.Close();
 
-            return new Region();
+            return new Job();
         }
         catch
         {
-            return new Region();
+            return new Job();
         }
+    }
+
+    internal int Delete(string id)
+    {
+        throw new NotImplementedException();
     }
 }
