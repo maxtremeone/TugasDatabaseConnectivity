@@ -5,6 +5,8 @@ namespace DatabaseConnectivity.Models;
 
 public class Region
 {
+    internal string RegionId;
+
     public int Id { get; set; }
     public string? Name { get; set; }
 
@@ -197,5 +199,10 @@ public class Region
         {
             return new Region();
         }
+    }
+
+    internal Region GetById(string id)
+    {
+        throw new NotImplementedException();
     }
 }
