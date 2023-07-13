@@ -2336,9 +2336,9 @@ public class Program
                     DateTime newEndDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter new department ID: ");
                     int newDepartmentId = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter new job ID: ");
-                    string newJobId = Console.ReadLine();
-                    UpdateHistories(updateEmployeeId, newStartDate, newEndDate, newDepartmentId, newJobId);
+                    Console.Write("Enter old job ID: ");
+                    string oldJobId = Console.ReadLine();
+                    UpdateHistories(updateEmployeeId, newStartDate, newEndDate, newDepartmentId, oldJobId);
                     break;
                 case "4":
                     Console.Write("Enter employee ID: ");
