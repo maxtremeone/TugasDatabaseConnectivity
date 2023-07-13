@@ -248,4 +248,9 @@ public class History
             return new History();
         }
     }
+
+    internal History GetById(int id)
+    {
+        throw new NotImplementedException();
+    }
 }
