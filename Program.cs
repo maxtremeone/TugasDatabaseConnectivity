@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
+using System.Transactions;
 using System.Xml.Linq;
 
 namespace DatabaseConnectivity;
@@ -16,6 +17,7 @@ public class Program
     public static void Main()
     {
         Menu();
+        //UpdateLocations(21, "Jalan Yuk", "3627", "Jelambar", "Jakarta Barat", "KR");
     }
 
 
@@ -800,7 +802,7 @@ public class Program
             pCountryId.Value = country_id;
             sqlCommand.Parameters.Add(pCountryId);
 
-            int result = sqlCommand.ExecuteNonQuery(); 
+            int result = sqlCommand.ExecuteNonQuery(); //ini int karena variabel result mengembalikan angka
             if (result > 0)
             {
                 Console.WriteLine("Insert success.");
@@ -828,7 +830,7 @@ public class Program
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "UPDATE countries SET street_address = @street address, postal_code = @postal_code, city = @city, state_province = @state_province, country_id = @country_id WHERE id = @id";
+        sqlCommand.CommandText = "UPDATE locations SET street_address = @street_address, postal_code = @postal_code, city = @city, state_province = @state_province, country_id = @country_id WHERE id = @id";
 
         _connection.Open();
         SqlTransaction transaction = _connection.BeginTransaction();
@@ -885,10 +887,9 @@ public class Program
             transaction.Commit();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
-            transaction.Rollback();
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
 
@@ -1088,7 +1089,7 @@ public class Program
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "UPDATE departments SET id = @id name = @name, location_id = @location_id, manager_id = @manager_id";
+        sqlCommand.CommandText = "UPDATE departments SET name = @name, location_id = @location_id, manager_id = @manager_id WHERE id = @id";
 
         _connection.Open();
         SqlTransaction transaction = _connection.BeginTransaction();
@@ -1096,6 +1097,12 @@ public class Program
 
         try
         {
+            SqlParameter pId = new SqlParameter();
+            pId.ParameterName = "@id";
+            pId.SqlDbType = SqlDbType.Int;
+            pId.Value = id;
+            sqlCommand.Parameters.Add(pId);
+
             SqlParameter pName = new SqlParameter();
             pName.ParameterName = "@name";
             pName.SqlDbType = SqlDbType.VarChar;
@@ -1127,11 +1134,12 @@ public class Program
             transaction.Commit();
             _connection.Close();
         }
-        catch (Exception e)
+        catch (Exception x)
         {
-            Console.WriteLine("Error : " + e);
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
+
 
 
     //Delete departmens
@@ -1141,7 +1149,7 @@ public class Program
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "DELETE FROM departmens WHERE id = @id";
+        sqlCommand.CommandText = "DELETE FROM departments WHERE id = @id";
 
         _connection.Open();
         SqlTransaction transaction = _connection.BeginTransaction();
@@ -1168,10 +1176,9 @@ public class Program
             transaction.Commit();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
-            transaction.Rollback();
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
 
@@ -1203,7 +1210,7 @@ public class Program
                     Console.WriteLine("Id: " + reader.GetInt32(0));
                     Console.WriteLine("Name: " + reader.GetString(1));
                     Console.WriteLine("LocationId: " + reader.GetInt32(2));
-                    Console.WriteLine("ManagerId: " + reader.GetInt32(3));
+                    //Console.WriteLine("ManagerId: " + reader.GetInt32(3));
                 }
             }
             else
@@ -1247,7 +1254,7 @@ public class Program
                     Console.WriteLine("HireDate: " + reader.GetDateTime(5));
                     Console.WriteLine("Salary: " + reader.GetInt32(6));
                     Console.WriteLine("Comission_pct: " + reader.GetDecimal(7));
-                    Console.WriteLine("Manager_id: " + reader.GetInt32(8));
+                    //Console.WriteLine("Manager_id: " + reader.GetInt32(8));
                     Console.WriteLine("Job_id: " + reader.GetString(9));
                     Console.WriteLine("Department_id: " + reader.GetInt32(10));
                 }
@@ -1599,21 +1606,21 @@ public class Program
             reader.Close();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
 
 
     //INSERT HISTORIES
-    public static void InsertHistories(DateTime start_date, int employee_id, DateTime end_date, int department_id, string job_id)
+    public static void InsertHistories(DateTime start_date, int employee_id, DateTime end_date, int departmen_id, string job_id)
     {
         _connection = new SqlConnection(_connectionString);
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "INSERT INTO employees (start_date, employee_id, end_date, department_id, job_id) VALUES (@start_date, @employee_id, @end_date, @department_id, @job_id)";
+        sqlCommand.CommandText = "INSERT INTO histories (start_date, employee_id, end_date, departmen_id, job_id) VALUES (@start_date, @employee_id, @end_date, @departmen_id, @job_id)";
 
         _connection.Open();
         SqlTransaction transaction = _connection.BeginTransaction();
@@ -1639,11 +1646,11 @@ public class Program
             pEndDate.Value = end_date;
             sqlCommand.Parameters.Add(pEndDate);
 
-            SqlParameter pDepartmentId = new SqlParameter();
-            pDepartmentId.ParameterName = "@department_id";
-            pDepartmentId.SqlDbType = SqlDbType.Int;
-            pDepartmentId.Value = department_id;
-            sqlCommand.Parameters.Add(pDepartmentId);
+            SqlParameter pDepartmentsId = new SqlParameter();
+            pDepartmentsId.ParameterName = "@departmen_id";
+            pDepartmentsId.SqlDbType = SqlDbType.Int;
+            pDepartmentsId.Value = departmen_id;
+            sqlCommand.Parameters.Add(pDepartmentsId);
 
             SqlParameter pJobId = new SqlParameter();
             pJobId.ParameterName = "@job_id";
@@ -1664,22 +1671,23 @@ public class Program
             transaction.Commit();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
             transaction.Rollback();
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
 
 
+
     //UPDATE HISTORIES
-    public static void UpdateHistories(int employee_id, DateTime start_date, DateTime end_date, int department_id, string job_id)
+    public static void UpdateHistories(int employee_id, DateTime start_date, DateTime end_date, int departmen_id, string job_id)
     {
         _connection = new SqlConnection(_connectionString);
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "UPDATE histories SET start_date = @start_date, end_date = @end_date, department_id = @department_id, job_id = @job_id WHERE employee_id = @employee_id";
+        sqlCommand.CommandText = "UPDATE histories SET start_date = @start_date, end_date = @end_date, departmen_id = @departmen_id, job_id = @job_id WHERE employee_id = @employee_id";
 
         _connection.Open();
         SqlTransaction transaction = _connection.BeginTransaction();
@@ -1705,9 +1713,9 @@ public class Program
             sqlCommand.Parameters.Add(pEndDate);
 
             SqlParameter pDepartmentId = new SqlParameter();
-            pDepartmentId.ParameterName = "@department_id";
+            pDepartmentId.ParameterName = "@departmen_id";
             pDepartmentId.SqlDbType = SqlDbType.Int;
-            pDepartmentId.Value = department_id;
+            pDepartmentId.Value = departmen_id;
             sqlCommand.Parameters.Add(pDepartmentId);
 
             SqlParameter pJobId = new SqlParameter();
@@ -1728,10 +1736,10 @@ public class Program
             transaction.Commit();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
             transaction.Rollback();
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
 
@@ -1783,11 +1791,11 @@ public class Program
 
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = _connection;
-        sqlCommand.CommandText = "SELECT * FROM histories WHERE Id = @employee_id";
+        sqlCommand.CommandText = "SELECT * FROM histories WHERE employee_id = @employee_id";
 
         SqlParameter parameter = new SqlParameter();
         parameter.ParameterName = "@employee_id";
-        parameter.SqlDbType = SqlDbType.VarChar;
+        parameter.SqlDbType = SqlDbType.Int;
         parameter.Value = employee_id;
         sqlCommand.Parameters.Add(parameter);
 
@@ -1809,17 +1817,18 @@ public class Program
             }
             else
             {
-                Console.WriteLine("No countries found for the given ID.");
+                Console.WriteLine("No histories found for the given employee ID.");
             }
 
             reader.Close();
             _connection.Close();
         }
-        catch
+        catch (Exception x)
         {
-            Console.WriteLine("Error connecting to database.");
+            Console.WriteLine("Error connecting to the database. " + x.Message);
         }
     }
+
 
 
     public static void Menu()
@@ -2100,7 +2109,7 @@ public class Program
                     string newCity = Console.ReadLine();
                     Console.Write("Enter new state province: ");
                     string newStateProvince = Console.ReadLine();
-                    Console.Write("Enter new country ID: ");
+                    Console.Write("Enter old country ID: ");
                     string newCountryId = Console.ReadLine();
                     UpdateLocations(updateLocationId, newStreetAddress, newPostalCode, newCity, newStateProvince, newCountryId);
                     break;
@@ -2224,7 +2233,7 @@ public class Program
                     string email = Console.ReadLine();
                     Console.Write("Enter phone number: ");
                     string phoneNumber = Console.ReadLine();
-                    Console.Write("Enter hire date (yyyy-mm-dd): ");
+                    Console.Write("Enter hire date (yyyy-MM-dd): ");
                     DateTime hireDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter salary: ");
                     int salary = Convert.ToInt32(Console.ReadLine());
@@ -2249,7 +2258,7 @@ public class Program
                     string newEmail = Console.ReadLine();
                     Console.Write("Enter new phone number: ");
                     string newPhoneNumber = Console.ReadLine();
-                    Console.Write("Enter new hire date (yyyy-mm-dd): ");
+                    Console.Write("Enter new hire date (yyyy-MM-dd): ");
                     DateTime newHireDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter new salary: ");
                     int newSalary = Convert.ToInt32(Console.ReadLine());
@@ -2306,11 +2315,11 @@ public class Program
                     GetHistories();
                     break;
                 case "2":
-                    Console.Write("Enter start date (yyyy-mm-dd): ");
+                    Console.Write("Enter start date (yyyy-MM-dd): ");
                     DateTime startDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter employee ID: ");
                     int employeeId = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter end date (yyyy-mm-dd): ");
+                    Console.Write("Enter end date (yyyy-MM-dd): ");
                     DateTime endDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter department ID: ");
                     int departmentId = Convert.ToInt32(Console.ReadLine());
@@ -2319,11 +2328,11 @@ public class Program
                     InsertHistories(startDate, employeeId, endDate, departmentId, jobId);
                     break;
                 case "3":
-                    Console.Write("Enter employee ID: ");
+                    Console.Write("Enter old employee ID: ");
                     int updateEmployeeId = Convert.ToInt32(Console.ReadLine());
-                    Console.Write("Enter new start date (yyyy-mm-dd): ");
+                    Console.Write("Enter new start date (yyyy-MM-dd): ");
                     DateTime newStartDate = Convert.ToDateTime(Console.ReadLine());
-                    Console.Write("Enter new end date (yyyy-mm-dd): ");
+                    Console.Write("Enter new end date (yyyy-MM-dd): ");
                     DateTime newEndDate = Convert.ToDateTime(Console.ReadLine());
                     Console.Write("Enter new department ID: ");
                     int newDepartmentId = Convert.ToInt32(Console.ReadLine());
