@@ -86,7 +86,7 @@ namespace DatabaseConnectivity.Controllers
 
         public void SearchRegionById()
         {
-            int id = _regionView.SearchByIdMenu();
+            var id = _regionView.SearchByIdMenu();
             var region = _regionModel.GetById(id);
             
             if (region == null)
