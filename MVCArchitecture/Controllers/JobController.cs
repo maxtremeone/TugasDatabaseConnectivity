@@ -98,5 +98,10 @@ namespace DatabaseConnectivity.Controllers
                 _jobView.GetById(job);
             }
         }
+
+        internal void DeleteJob()
+        {
+            throw new NotImplementedException();
+        }
     }
 }
