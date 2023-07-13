@@ -4,7 +4,10 @@ namespace DatabaseConnectivity;
 
 public class Connection
 {
-    private static string _connectionString = "Data Source=CAMOUFLY;Database=db_mcc_79;Integrated Security=True;Connect Timeout=30;";
+    private static string _connectionString = "Data Source=LAPTOP-940PM46G;" +
+        "Database=db_tugasERD5;" +
+        "Integrated Security=True;" +
+        "Connect Timeout=30;";
 
     private static SqlConnection _connection;
 
