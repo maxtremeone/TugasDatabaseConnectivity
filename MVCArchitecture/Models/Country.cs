@@ -4,7 +4,7 @@ using System.Transactions;
 
 namespace DatabaseConnectivity.Models;
 
-    public class Country
+public class Country
 {
     public string Id { get; set; }
     public string Name { get; set; }
@@ -88,12 +88,12 @@ namespace DatabaseConnectivity.Models;
             transaction.Commit();
             connection.Close();
 
-            return result; // 0 gagal, >= 1 berhasil
+            return result;
         }
         catch
         {
             transaction.Rollback();
-            return -1; // Kesalahan terjadi pada database
+            return -1;
         }
     }
 
