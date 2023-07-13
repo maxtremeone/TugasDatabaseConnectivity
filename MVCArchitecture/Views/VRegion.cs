@@ -18,7 +18,15 @@ namespace DatabaseConnectivity.Views
         {
             Console.WriteLine("Id: " + region.Id);
             Console.WriteLine("Name: " + region.Name);
+            Console.WriteLine("Region Id: " + region.RegionId);
             Console.WriteLine("==========================");
+        }
+
+        public string SearchByIdMenu()
+        {
+            Console.WriteLine("Enter the ID to search: ");
+            string id = Console.ReadLine();
+            return id;
         }
 
         public void DataEmpty()
@@ -89,9 +97,9 @@ namespace DatabaseConnectivity.Views
             return id;
         }
 
-        internal int SearchByIdMenu()
-        {
-            throw new NotImplementedException();
-        }
+        //internal int SearchByIdMenu()
+        //{
+        //    throw new NotImplementedException();
+        //}
     }
 }
