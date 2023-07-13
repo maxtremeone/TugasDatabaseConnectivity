@@ -1,5 +1,4 @@
-﻿using MVCArchitecture;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
 
 namespace DatabaseConnectivity.Models;
@@ -174,7 +173,7 @@ public class Region
         SqlParameter parameter = new SqlParameter();
         parameter.ParameterName = "@id";
         parameter.SqlDbType = SqlDbType.Int;
-        parameter.Value = regionId;
+        parameter.Value = region.Id;
         sqlCommand.Parameters.Add(parameter);
 
         try
