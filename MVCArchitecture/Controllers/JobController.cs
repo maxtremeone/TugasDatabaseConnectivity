@@ -6,8 +6,8 @@ namespace DatabaseConnectivity.Controllers
 {
     public class JobController
     {
-        private Job _jobModel; //buat Model Job
-        private VJob _jobView; //buat View Job
+        private Job _jobModel;
+        private VJob _jobView;
 
         public JobController(Job jobModel, VJob jobView)
         {
@@ -15,7 +15,7 @@ namespace DatabaseConnectivity.Controllers
             _jobView = jobView;
         }
 
-        public void GetAllJob()
+        public void GetAllJobs()
         {
             var result = _jobModel.GetAll();
             if (result.Count == 0)
@@ -65,7 +65,7 @@ namespace DatabaseConnectivity.Controllers
             }
         }
 
-        public void DeleteRegion()
+        public void DeleteJob()
         {
             var id = _jobView.DeleteMenu();
             var result = _jobModel.Delete(id);
@@ -87,7 +87,7 @@ namespace DatabaseConnectivity.Controllers
         public void SearchJobById()
         {
             var id = _jobView.SearchByIdMenu();
-            var job = _jobView.GetById(id);
+            var job = _jobModel.GetById(id);
 
             if (job == null)
             {
@@ -97,11 +97,6 @@ namespace DatabaseConnectivity.Controllers
             {
                 _jobView.GetById(job);
             }
-        }
-
-        internal void DeleteJob()
-        {
-            throw new NotImplementedException();
         }
     }
 }
