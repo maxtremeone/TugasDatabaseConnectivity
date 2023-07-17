@@ -207,7 +207,7 @@ public class History
         }
     }
 
-    public History GetByEmployeeId(int employeeId)
+    public History GetByHistoryId(int historyId)
     {
         var history = new History();
 
@@ -220,7 +220,7 @@ public class History
         SqlParameter pEmployeeId = new SqlParameter();
         pEmployeeId.ParameterName = "@employee_id";
         pEmployeeId.SqlDbType = SqlDbType.Int;
-        pEmployeeId.Value = employeeId;
+        pEmployeeId.Value = historyId;
         sqlCommand.Parameters.Add(pEmployeeId);
 
         try
@@ -249,8 +249,5 @@ public class History
         }
     }
 
-    internal History GetById(int id)
-    {
-        throw new NotImplementedException();
-    }
+   
 }
