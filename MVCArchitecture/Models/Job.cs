@@ -194,7 +194,7 @@ public class Job
     }
 
 
-    public Job GetById(int id)
+    public Job GetById(string id)
     {
         var job = new Job();
 
