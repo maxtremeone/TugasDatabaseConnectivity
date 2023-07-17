@@ -1,6 +1,7 @@
-﻿using DatabaseConnectivity.Models;
+﻿using System;
+using System.Collections.Generic;
+using DatabaseConnectivity.Models;
 using DatabaseConnectivity.Views;
-using System;
 
 namespace DatabaseConnectivity.Controllers
 {
@@ -28,16 +29,9 @@ namespace DatabaseConnectivity.Controllers
             }
         }
 
-        public void InsertDepartment(int id, string name, int location_id, int manager_id)
+        public void InsertDepartment()
         {
-            var department = new Department
-            {
-                Id = id,
-                Name = name,
-                LocationId = location_id,
-                ManagerId = manager_id
-            };
-
+            var department = _departmentView.InsertMenu();
             int result = _departmentModel.Insert(department);
             switch (result)
             {
@@ -53,16 +47,9 @@ namespace DatabaseConnectivity.Controllers
             }
         }
 
-        public void UpdateDepartment(int id, string name, int location_id, int manager_id)
+        public void UpdateDepartment()
         {
-            var department = new Department
-            {
-                Id = id,
-                Name = name,
-                LocationId = location_id,
-                ManagerId = manager_id
-            };
-
+            var department = _departmentView.UpdateMenu();
             int result = _departmentModel.Update(department);
 
             switch (result)
@@ -79,8 +66,9 @@ namespace DatabaseConnectivity.Controllers
             }
         }
 
-        public void DeleteDepartment(int id)
+        public void DeleteDepartment()
         {
+            var id = _departmentView.DeleteMenu();
             var result = _departmentModel.Delete(id);
 
             switch (result)
@@ -97,8 +85,9 @@ namespace DatabaseConnectivity.Controllers
             }
         }
 
-        public void SearchDepartmentById(int id)
+        public void SearchDepartmentById()
         {
+            var id = _departmentView.SearchByIdMenu();
             var department = _departmentModel.GetById(id);
 
             if (department == null)
@@ -109,21 +98,6 @@ namespace DatabaseConnectivity.Controllers
             {
                 _departmentView.GetById(department);
             }
-        }
-
-        internal void UpdateDepartment()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void DeleteDepartment()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal void SearchDepartmentById()
-        {
-            throw new NotImplementedException();
         }
     }
 }
