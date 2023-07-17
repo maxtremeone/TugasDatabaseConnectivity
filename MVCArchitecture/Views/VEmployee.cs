@@ -21,13 +21,33 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("Last Name: " + employee.LastName);
             Console.WriteLine("Email: " + employee.Email);
             Console.WriteLine("Phone Number: " + employee.PhoneNumber);
-            Console.WriteLine("Hire Date: " + employee.HireDate.ToString("yyyy-MM-dd"));
+            Console.WriteLine("Hire Date: " + employee.HireDate);
             Console.WriteLine("Salary: " + employee.Salary);
-            Console.WriteLine("Commission Pct: " + employee.CommissionPct);
-            Console.WriteLine("Manager Id: " + employee.ManagerId);
-            Console.WriteLine("Job Id: " + employee.JobId);
-            Console.WriteLine("Department Id: " + employee.DepartmentId);
+            Console.WriteLine("Commission Percentage: " + employee.CommissionPct);
+            Console.WriteLine("Manager ID: " + employee.ManagerId);
+            Console.WriteLine("Job ID: " + employee.JobId);
+            Console.WriteLine("Department ID: " + employee.DepartmentId);
             Console.WriteLine("==========================");
+        }
+
+        public void DataEmpty()
+        {
+            Console.WriteLine("Data Not Found!");
+        }
+
+        public void Success()
+        {
+            Console.WriteLine("Success!");
+        }
+
+        public void Failure()
+        {
+            Console.WriteLine("Failed to retrieve data!");
+        }
+
+        public void Error()
+        {
+            Console.WriteLine("Error retrieving data from the database!");
         }
 
         public int Menu()
@@ -62,20 +82,20 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("Enter Phone Number: ");
             string phoneNumber = Console.ReadLine();
 
-            Console.WriteLine("Enter Hire Date (yyyy-MM-dd): ");
+            Console.WriteLine("Enter Hire Date (YYYY-MM-DD): ");
             DateTime hireDate = DateTime.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter Salary: ");
             int salary = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter Commission Pct: ");
+            Console.WriteLine("Enter Commission Percentage: ");
             decimal commissionPct = Decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter Manager ID: ");
             int managerId = Int32.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter Job ID: ");
-            int jobId = Int32.Parse(Console.ReadLine());
+            string jobId = Console.ReadLine();
 
             Console.WriteLine("Enter Department ID: ");
             int departmentId = Int32.Parse(Console.ReadLine());
@@ -113,20 +133,20 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("Enter new Phone Number: ");
             string phoneNumber = Console.ReadLine();
 
-            Console.WriteLine("Enter new Hire Date (yyyy-MM-dd): ");
+            Console.WriteLine("Enter new Hire Date (YYYY-MM-DD): ");
             DateTime hireDate = DateTime.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter new Salary: ");
             int salary = Int32.Parse(Console.ReadLine());
 
-            Console.WriteLine("Enter new Commission Pct: ");
+            Console.WriteLine("Enter new Commission Percentage: ");
             decimal commissionPct = Decimal.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter new Manager ID: ");
             int managerId = Int32.Parse(Console.ReadLine());
 
             Console.WriteLine("Enter new Job ID: ");
-            int jobId = Int32.Parse(Console.ReadLine());
+            string jobId = Console.ReadLine();
 
             Console.WriteLine("Enter new Department ID: ");
             int departmentId = Int32.Parse(Console.ReadLine());
@@ -159,26 +179,6 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("Enter the ID to search: ");
             int id = Int32.Parse(Console.ReadLine());
             return id;
-        }
-
-        public void DataEmpty()
-        {
-            Console.WriteLine("Data Not Found!");
-        }
-
-        public void Success()
-        {
-            Console.WriteLine("Success!");
-        }
-
-        public void Failure()
-        {
-            Console.WriteLine("Fail, Id not found!");
-        }
-
-        public void Error()
-        {
-            Console.WriteLine("Error retrieving from the database!");
         }
     }
 }
