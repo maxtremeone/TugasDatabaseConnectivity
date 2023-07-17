@@ -88,7 +88,7 @@ namespace DatabaseConnectivity.Controllers
         public void SearchHistoryById()
         {
             var id = _historyView.SearchByIdMenu();
-            var history = _historyModel.GetById(id);
+            var history = _historyModel.GetByHistoryId(id);
 
             if (history == null)
             {
