@@ -8,7 +8,7 @@ public class Region
     internal string RegionId;
 
     public int Id { get; set; }
-    public string? Name { get; set; }
+    public string Name { get; set; }
 
     public List<Region> GetAll()
     {
@@ -108,7 +108,7 @@ public class Region
             sqlCommand.Parameters.Add(pName);
 
             SqlParameter pRegionId = new SqlParameter();
-            pRegionId.ParameterName = "@region_id";
+            pRegionId.ParameterName = "@id";
             pRegionId.SqlDbType = System.Data.SqlDbType.Int;
             pRegionId.Value = region.Id;
             sqlCommand.Parameters.Add(pRegionId);
@@ -170,12 +170,11 @@ public class Region
         SqlCommand sqlCommand = new SqlCommand();
         sqlCommand.Connection = connection;
         sqlCommand.CommandText = "SELECT * FROM regions WHERE Id = @id";
-        //sqlCommand.Parameters.AddWithValue("@region_id", id);
 
         SqlParameter parameter = new SqlParameter();
         parameter.ParameterName = "@id";
         parameter.SqlDbType = SqlDbType.Int;
-        parameter.Value = region.Id;
+        parameter.Value = id;
         sqlCommand.Parameters.Add(parameter);
 
         try
@@ -193,13 +192,14 @@ public class Region
             reader.Close();
             connection.Close();
 
-            return new Region();
+            return region; // Mengembalikan region yang ditemukan
         }
         catch
         {
-            return new Region();
+            return null; // Mengembalikan null jika terjadi kesalahan
         }
     }
+
 
     internal Region GetById(string id)
     {
