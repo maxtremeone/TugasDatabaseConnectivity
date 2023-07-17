@@ -1,6 +1,7 @@
-﻿using DatabaseConnectivity.Models;
+﻿using System;
+using System.Collections.Generic;
+using DatabaseConnectivity.Models;
 using DatabaseConnectivity.Views;
-using System;
 
 namespace DatabaseConnectivity.Controllers
 {
@@ -15,7 +16,7 @@ namespace DatabaseConnectivity.Controllers
             _employeeView = employeeView;
         }
 
-        public void GetAllEmployee()
+        public void GetAllEmployees()
         {
             var result = _employeeModel.GetAll();
             if (result.Count == 0)
