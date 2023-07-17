@@ -129,9 +129,11 @@ namespace DatabaseConnectivity.Views
             return id;
         }
 
-        internal int SearchByIdMenu()
+        public int SearchByIdMenu()
         {
-            throw new NotImplementedException();
+            Console.WriteLine("Enter the ID to search: ");
+            int id = Int32.Parse(Console.ReadLine());
+            return id;
         }
     }
 }
