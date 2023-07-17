@@ -5,7 +5,7 @@ using System.Collections.Generic;
 namespace DatabaseConnectivity.Models;
 public class Department 
 {
-    internal readonly string RegionId;
+    //internal readonly string RegionId;
 
     public int Id { get; set; }
     public string Name { get; set; }
