@@ -1,14 +1,13 @@
 ﻿using DatabaseConnectivity.Controllers;
 using DatabaseConnectivity.Models;
 using DatabaseConnectivity.Views;
+using MVCArchitecture.Controllers;
 using System;
 
 namespace DatabaseConnectivity
 {
     public class Program
     {
-        private static VDepartment vDepartment;
-
         public static void Main()
         {
             Menu();
@@ -27,13 +26,12 @@ namespace DatabaseConnectivity
                 Console.WriteLine("5. Departments");
                 Console.WriteLine("6. Employees");
                 Console.WriteLine("7. Histories");
+                Console.WriteLine("8. LinQ");
                 Console.WriteLine("0. Exit");
-                string option = Console.ReadLine();
-
-                try
-                {
-                    int optionInt = Int32.Parse(option);
-                    switch (optionInt)
+                //string option = Console.ReadLine();
+                
+                    int optionMenu = Convert.ToInt32(Console.ReadLine()); 
+                    switch (optionMenu)
                     {
                         case 1:
                             RegionsMenu();
@@ -56,18 +54,16 @@ namespace DatabaseConnectivity
                         case 7:
                             HistoriesMenu();
                             break;
+                        case 8:
+                            LinQMenu();
+                            break;
                         case 0:
                             ulang = false;
                             break;
                         default:
                             Console.WriteLine("Invalid option. Please try again.");
                             break;
-                    }
-                }
-                catch (Exception e)
-                {
-                    Console.WriteLine("Invalid option. Please try again.");
-                }
+                    } 
 
             } while (ulang);
         }
@@ -155,7 +151,7 @@ namespace DatabaseConnectivity
                         PressAnyKey();
                         break;
                     case 5:
-                        jobController.GetAllJob();
+                        jobController.GetAllJobs();
                         PressAnyKey();
                         break;
                     case 6:
@@ -327,7 +323,7 @@ namespace DatabaseConnectivity
                         PressAnyKey();
                         break;
                     case 5:
-                        employeeController.GetAllEmployee();
+                        employeeController.GetAllEmployees();
                         PressAnyKey();
                         break;
                     case 6:
@@ -380,6 +376,27 @@ namespace DatabaseConnectivity
                         break;
                 }
             } while (isTrue);
+        }
+
+        private static void LinQMenu()
+        {
+            Employee employee = new Employee();
+            Country country = new Country();
+            Department department = new Department();
+            Region region = new Region();
+            Location location = new Location();
+
+            // Inisialisasi objek view
+            VLinQ linqView = new VLinQ();
+
+            // Inisialisasi objek controller
+            LinqController linqController = new LinqController(employee, country, region, location, department);
+
+            // Panggil method untuk menampilkan detail employee
+            linqController.DetailEmployee();
+
+            Console.WriteLine("Press any key to exit...");
+            Console.ReadKey();
         }
     }
 }
