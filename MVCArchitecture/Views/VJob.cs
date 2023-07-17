@@ -23,6 +23,13 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("==========================");
         }
 
+        public string SearchByIdMenu()
+        {
+            Console.WriteLine("Enter the ID to search: ");
+            string id = Console.ReadLine();
+            return id;
+        }
+
         public void DataEmpty()
         {
             Console.WriteLine("Data Not Found!");
@@ -109,16 +116,6 @@ namespace DatabaseConnectivity.Views
             Console.WriteLine("Enter the ID to delete: ");
             string id = Console.ReadLine();
             return id;
-        }
-
-        internal string SearchByIdMenu()
-        {
-            throw new NotImplementedException();
-        }
-
-        internal Job GetById(string id)
-        {
-            throw new NotImplementedException();
         }
     }
 }
