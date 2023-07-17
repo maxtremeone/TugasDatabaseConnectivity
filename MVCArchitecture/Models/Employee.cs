@@ -16,7 +16,7 @@ public class Employee
     public int Salary { get; set; }
     public decimal CommissionPct { get; set; }
     public int ManagerId { get; set; }
-    public int JobId { get; set; }
+    public string JobId { get; set; }
     public int DepartmentId { get; set; }
 
     public List<Employee> GetAll()
@@ -38,17 +38,17 @@ public class Employee
                 while (reader.Read())
                 {
                     Employee employee = new Employee();
-                    employee.Id = reader.GetInt32(0);
-                    employee.FirstName = reader.GetString(1);
-                    employee.LastName = reader.GetString(2);
-                    employee.Email = reader.GetString(3);
-                    employee.PhoneNumber = reader.GetString(4);
-                    employee.HireDate = reader.GetDateTime(5);
-                    employee.Salary = reader.GetInt32(6);
-                    employee.CommissionPct = reader.GetDecimal(7);
-                    employee.ManagerId = reader.GetInt32(8);
-                    employee.JobId = reader.GetInt32(9);
-                    employee.DepartmentId = reader.GetInt32(10);
+                    employee.Id = reader.GetInt32(i :0);
+                    employee.FirstName = reader.GetString(i:1);
+                    employee.LastName = reader.GetString(i: 2);
+                    employee.Email = reader.GetString(i: 3);
+                    employee.PhoneNumber = reader.GetString(i: 4);
+                    employee.HireDate = reader.GetDateTime(i:5);
+                    employee.Salary = reader.GetInt32(i: 6);
+                    employee.CommissionPct = reader.GetDecimal(i: 7);
+                    employee.ManagerId = reader.GetInt32(i: 8);
+                    employee.JobId = reader.GetString(i: 9);
+                    employee.DepartmentId = reader.GetInt32(i: 10);
 
                     employees.Add(employee);
                 }
@@ -327,7 +327,7 @@ public class Employee
                 employee.Salary = reader.GetInt32(6);
                 employee.CommissionPct = reader.GetDecimal(7);
                 employee.ManagerId = reader.GetInt32(8);
-                employee.JobId = reader.GetInt32(9);
+                employee.JobId = reader.GetString(9);
                 employee.DepartmentId = reader.GetInt32(10);
             }
 
