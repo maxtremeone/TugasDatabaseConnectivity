@@ -43,13 +43,13 @@ namespace DatabaseConnectivity.Controllers
                 default:
                     _regionView.Success();
                     break;
-            } 
+            }
         }
 
         public void UpdateRegion()
         {
             var region = _regionView.UpdateMenu();
-            int result = _regionModel.Update(region);
+            var result = _regionModel.Update(region);
 
             switch (result)
             {
@@ -86,9 +86,9 @@ namespace DatabaseConnectivity.Controllers
 
         public void SearchRegionById()
         {
-            var id = _regionView.SearchByIdMenu();
+            int id = _regionView.SearchByIdMenu();
             var region = _regionModel.GetById(id);
-            
+
             if (region == null)
             {
                 _regionView.Failure();
