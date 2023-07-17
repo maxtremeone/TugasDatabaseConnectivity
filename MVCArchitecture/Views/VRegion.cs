@@ -18,14 +18,13 @@ namespace DatabaseConnectivity.Views
         {
             Console.WriteLine("Id: " + region.Id);
             Console.WriteLine("Name: " + region.Name);
-            Console.WriteLine("Region Id: " + region.RegionId);
             Console.WriteLine("==========================");
         }
 
-        public string SearchByIdMenu()
+        public int SearchByIdMenu()
         {
             Console.WriteLine("Enter the ID to search: ");
-            string id = Console.ReadLine();
+            int id = Convert.ToInt32(Console.ReadLine());
             return id;
         }
 
@@ -67,19 +66,20 @@ namespace DatabaseConnectivity.Views
         public Region InsertMenu()
         {
             Console.WriteLine("Enter Name: ");
-            string inputName = Console.ReadLine();
+            string name = Console.ReadLine();
 
             return new Region
             {
                 Id = 0,
-                Name = inputName
+                Name = name
             };
         }
 
         public Region UpdateMenu()
         {
             Console.WriteLine("Enter the ID to update: ");
-            int id = Convert.ToInt32(Console.ReadLine());
+            int id = Int32.Parse(Console.ReadLine());
+
             Console.WriteLine("Enter new Name: ");
             string name = Console.ReadLine();
 
@@ -93,13 +93,8 @@ namespace DatabaseConnectivity.Views
         public int DeleteMenu()
         {
             Console.WriteLine("Enter the ID to delete: ");
-            int id = Convert.ToInt32(Console.ReadLine());
+            int id = Int32.Parse(Console.ReadLine());
             return id;
         }
-
-        //internal int SearchByIdMenu()
-        //{
-        //    throw new NotImplementedException();
-        //}
     }
 }
